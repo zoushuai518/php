@@ -3,3 +3,9 @@ Fire PHP 是Firefox 的扩充套件，但它可以帮你debug 后端PHP 的程�
 
 url:
 http://www.firephp.org/
+
+User:
+http://www.firephp.org/HQ/Use.htm
+
+Learn:
+http://www.firephp.org/HQ/Learn.htm
