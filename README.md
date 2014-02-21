@@ -5,7 +5,8 @@ http://www.php-fig.org/
 =======
 
 
-PHP EXT:	{& phpinfo message}
+PHP EXT:	|| phpinfo message
+
 {
 	EXT:
 }
