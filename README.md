@@ -19,5 +19,14 @@ PHP EXT:	|| phpinfo message
 {
 	Other:
 	pear -> 全程为PHP扩展与应用库，它是一个PHP扩展及应用的一个代码仓库
+
+	{
+		支持的协议和封装的协议：
+		http://www.php.net/manual/zh/wrappers.phar.php
+	}
+	{
+		压缩与归档扩展：
+		http://cn2.php.net/phar
+	}
 }
 =======
