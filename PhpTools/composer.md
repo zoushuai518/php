@@ -2,7 +2,9 @@ Composer PHP依赖管理器:Composer是一个管理PHP包依赖关系的工具�
 #===
 
 Composer Install
-#zs:参考 https://github.com/zoushuai518/linux/blob/master/ubuntu/php-composer.me
+官方URL:
+http//getcomposer.org
+zs:参考 https://github.com/zoushuai518/linux/blob/master/ubuntu/php-composer.me
 
 PHP依赖管理器：Composer 入门
 
