@@ -9,6 +9,10 @@ http://phpunit.de/manual/current/zh_cn/index.html
 #documentation:
 http://phpunit.de/documentation.html
 
+#use demo
+http://jamieonsoftware.com/post/59690789336/how-i-test
+
+
 =======
 phpUnit安装： Linux
 {
