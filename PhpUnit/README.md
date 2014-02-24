@@ -10,7 +10,7 @@ http://phpunit.de/manual/current/zh_cn/index.html
 http://phpunit.de/documentation.html
 
 =======
-phpUnit安装： {Linux}
+phpUnit安装： Linux
 {
 	wget https://phar.phpunit.de/phpunit.phar
 	chmod +x phpunit.phar
@@ -19,6 +19,7 @@ phpUnit安装： {Linux}
 	{
 		php phpunit.phar -v | phpunit -v
 	}
+	#zs: phar是可以在命令行运行的PHP文件
 }
 
 
