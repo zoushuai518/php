@@ -24,6 +24,10 @@ Windows平台:
 		5.执行D:\PHP>php go-pear.phar，按照提示可安装成功3.安装PHPUNIT，有了pear就不用手动安装了。
 		6.pear -V
 
+		{
+			pear 命令： pear list | pear -help
+		}
+
 	}
 
 	{
