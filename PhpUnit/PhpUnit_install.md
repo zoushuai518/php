@@ -54,11 +54,20 @@ Windows平台:
 		HPUnit 3.7.22 by Sebastian Bergmann.
 		
 		{
-			还有一种出错的情况：
-			[root@mylocalhost bin]# ./pear install  /usr/local/php/lib/php/PHPUnit-3.7.22.tgz
-			Did not download optional dependencies: phpunit/PHP_Invoker, use --alldeps to download automatically
-			phpunit/PHPUnit can optionally use package "phpunit/PHP_Invoker" (version >= 1.1.0, version <= 1.1.99)
-			install ok: channel://pear.phpunit.de/PHPUnit-3.7.22
+			安装是否的一种错误情况：
+			PHPUnit安装：
+			pear channel-discover pear.phpunit.de
+		    pear install phpunit/PHPUnit
+		    如果出现错误如下：
+			  No releases available for package "pear.phpunit.de/PHPUnit" install failed。
+		    解决方式如下：
+		    pear clear-cache(清除错误记录信息缓存)
+		    pear install -a -f phpunit/PHPUnit(重新安装)
+
+		}
+
+		{
+			使用时候的一种出错的情况：
 			[root@mylocalhost bin]# ./phpunit
 			PHP Warning:  require_once(PHPUnit/Framework/MockObject/Autoload.php): failed to open stream: No such file or directory in /usr/local/php/lib/php/PHPUnit/Autoload.php on line 67
 
@@ -75,6 +84,28 @@ Windows平台:
 			http://blog.sina.com.cn/s/blog_7550abf30101bq17.html
 			http://www.cnblogs.com/xiaoyaoxia/archive/2012/10/30/2746449.html
 		}
+
+		{
+			使用时候的一种出错的情况：
+			$:/usr/bin$ phpunit
+			PHP Warning:  require_once(PHP/CodeCoverage/Filter.php): failed to open stream: No such file or directory in /usr/bin/phpunit on line 38
+			PHP Fatal error:  require_once(): Failed opening required 'PHP/CodeCoverage/Filter.php' (include_path='.:/usr/share/php:/usr/share/pear') in /usr/bin/phpunit on line 38
+
+			解决办法：
+			在网上查了下，是phpunit的一个bug，然后有人提供了一个workaround：
+
+			sudo apt-get remove phpunit
+			sudo pear channel-discover pear.phpunit.de
+			sudo pear channel-discover pear.symfony-project.com
+			sudo pear channel-discover components.ez.no
+			sudo pear update-channels
+			sudo pear upgrade-all
+			sudo pear force --alldeps phpunit/PHPUnit
+
+			#url demo
+			http://blog.csdn.net/casilin/article/details/9836283
+		}
+
 	}
 }
 
