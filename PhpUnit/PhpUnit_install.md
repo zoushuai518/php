@@ -15,6 +15,7 @@ Linux平台:
 Windows平台:
 {
 	windows下安装 pear 和 PHPUnit
+	zs注：一下命令的执行 都是在 php安装根目录
 	{
 		install pear:
 		1.进入php安装目录下点击 go-pear.bat开始安装
@@ -46,7 +47,7 @@ Windows平台:
 		pear config-set auto_discover 1 
 		pear install pear.phpunit.de/PHPUnit
 
-		删除     ./pear uninstall  PHPUnit
+		删除     ./pear uninstall phpunit/PHPUnit
 		pear clear-cache
 		
 		if install successed
