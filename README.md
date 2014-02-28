@@ -29,4 +29,8 @@ PHP EXT:	|| phpinfo message
 		http://cn2.php.net/phar
 	}
 }
+
 =======
+
+php command:
+php --help
