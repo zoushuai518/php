@@ -1,0 +1,8 @@
+Yii中的错误及异常处理
+ 
+ Yii已经默认已经在CApplication上实现了异常和错误的接管，这是通过php的set_exception_handler, set_error_handler实现的。通过这两个PHP内置函数，可以对程序中未捕获的异常以及错误进行接管处理，从而提高程序的可维护性。这在大型系统是至关重要的，当发生错误时，我们希望能将相关详细信息记录，甚至是即时发送报警，从而缩短故障修复时间，提高整个系统的稳定性。
+  
+ 默认情况下，Yii会将异常处理分配给CApplication::handleException, 将错误处理分配给CApplication::handleError，但是可以通过在入口文件中定义YII_ENABLE_EXCEPTION_HANDLER, YII_ENABLE_ERROR_HANDLER两个常量为false禁止使用Yii的异常和错误接管机制。
+
+
+#仅供参考
