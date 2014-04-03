@@ -51,7 +51,7 @@ class ScdAnalytical extends ScdDb
             $this->_arrToString($scd_arrs);
             $max_row_id = $this->_getRow();     //不是友好的写法,仅仅debug使用
             $zengjia_row = !empty($max_row_id)?($max_row_id - (empty($min_row_id)?0:$min_row_id)):'data no insert';
-            return '数据库增加：' . $zengjia_row . '-' . $num .'行';
+            return '数据库增加：' . $zengjia_row . '行<br / >' . 'SCD文件记录数：' . $num .'行';
         }
 
         fclose($handle);    // close file handle
