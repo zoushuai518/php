@@ -15,67 +15,45 @@ class ScdAnalytical extends ScdDb
         parent::__construct($db['db']);
         $this->_config = $db['scd'];
     }
-    // SCD 字段列表
-    private static function _scdCloArr() {
-        $column_array = array(
-                'DOCID',
-                'Url',
-                'Brand05',
-                'Taste07',
-                'Service09',
-                'Brand18',
-                'Env08',
-                'Brand04',
-                'BusinessTime13',
-                'Label14',
-                'Area03',
-                'Menu15',
-                'Price06',
-                'Shangquan19',
-                'Score10',
-                'MenuImgs16',
-                'ShopName01',
-                'Telephone12',
-                'Address11',
-                'City02',
-            );
-        return $column_array;
-    }
 
     // 返回SCD数组
     public function handleScd() {
-        $num=0;    //计数器
-        $col_arr = self::_scdCloArr();
+        $num      = 0;    //计数器
         $scd_arrs = array();
-        $scd_arr = array();
-        $col_str = '';
+        $scd_arr  = array();
+        $col_str  = '';
         // 只读方式打开
         $handle = fopen($this->_config['scd_path'], "rb");
         if($handle) {
             while(!feof($handle))
             {
                 $col_str = fgets($handle,$this->_config['col_lenth']);  // 逐行读取
-                $str_len = strpos($col_str,'>');
-                if($str_len && in_array(substr($col_str,1,$str_len-1), $col_arr)) {
-                    $col_key = substr($col_str,1,$str_len-1);
+                $str_l_len = strpos($col_str,'<');
+                $str_r_len = strpos($col_str,'>');
+                if($str_l_len===0 && ($str_r_len!==0 && $str_r_len!=false)){
+                    $col_key = substr($col_str,$str_l_len+1,$str_r_len-1);
                     $scd_arr[$col_key] = str_replace('<'.$col_key.'>','',$col_str);
-                } else {
-                     $scd_arr[$col_key] .= $col_str;
+                }else{
+                    $scd_arr[$col_key] .= $col_str;
                 }
-                if(strpos($col_str, 'City02')) {
+                if($col_str===PHP_EOL) {
                     $scd_arrs[] = $scd_arr;
                     ++$num;
                 }
                 // 每次向 mysql数据库 insert $count条数据
                 if($scd_arrs && $num%$this->_config['db_count']==0) {
-                    var_dump($this->_arrToString($scd_arrs));
+                    ($num == $this->_config['db_count']) && $min_row_id = $this->_getRow();     //不是友好的写法,仅仅debug使用
+                    $this->_arrToString($scd_arrs);
                     unset($scd_arrs);
                 }
             }
             // insert 最后小于 $count条数据
-            $lg_num = $this->_arrToString($scd_arrs);
-            echo '剩余',$lg_num;
+            $this->_arrToString($scd_arrs);
+            $max_row_id = $this->_getRow();     //不是友好的写法,仅仅debug使用
+            $zengjia_row = !empty($max_row_id)?($max_row_id - (empty($min_row_id)?0:$min_row_id)):'data no insert';
+            return '数据库增加：' . $zengjia_row . '-' . $num .'行';
         }
+
         fclose($handle);    // close file handle
     }
 
@@ -95,14 +73,12 @@ class ScdAnalytical extends ScdDb
 }
 
 error_reporting(E_ALL ^E_NOTICE);
-$t1 = microtime(true);
-$scd = new ScdAnalytical($config);
+$t1      = microtime(true);
+$scd     = new ScdAnalytical($config);
 $scd_str = $scd->handleScd();
-$t2 = microtime(true);
-
-echo '<br />';
-echo $scd_str;
+$t2      = microtime(true);
+echo '<br />',$scd_str;
 $t = $t2-$t1;
-echo '执行时间',$t;
+echo '<br />执行时间',$t;
 
 ?>
