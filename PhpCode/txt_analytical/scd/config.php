@@ -11,7 +11,7 @@ return array(
     'scd'=>array(
         'scd_path'  =>dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'scd.SCD.bak',
         'col_lenth' =>2048,
-        'db_count'  =>1000,
+        'db_count'  =>4000,
     ),
 
 );

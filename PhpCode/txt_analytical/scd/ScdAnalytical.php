@@ -41,13 +41,12 @@ class ScdAnalytical extends ScdDb
                     ++$num;
                 }
                 // 每次向 mysql数据库 insert $count条数据
-                if($scd_arrs && $num%$this->_config['db_count']==0) {
+                if(isset($scd_arrs['0']) && $num%$this->_config['db_count']==0) {
                     ($num == $this->_config['db_count']) && $min_row_id = $this->_getRow();     //不是友好的写法,仅仅debug使用
                     $this->_arrToString($scd_arrs);
                     unset($scd_arrs);
                 }
             }
-            // insert 最后小于 $count条数据
             $this->_arrToString($scd_arrs);
             $max_row_id = $this->_getRow();     //不是友好的写法,仅仅debug使用
             $zengjia_row = !empty($max_row_id)?($max_row_id - (empty($min_row_id)?0:$min_row_id)):'data no insert';
