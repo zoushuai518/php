@@ -18,6 +18,7 @@ class DCApi {
 		curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		//curl_setopt ($ch,CURLOPT_REFERER,'HTTP://www.baidu.com');
+		//curl_setopt($s,CURLOPT_FOLLOWLOCATION,1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		if (defined('CURLOPT_IPRESOLVE') && defined('CURL_IPRESOLVE_V4')) {
 			curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
