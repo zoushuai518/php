@@ -1,0 +1,10 @@
+http请求:
+
+1.fsockopen
+2.file_get_contents
+3.curl
+
+#zs注:
+#需要掌握 Header请求的 头信息  & 伪造 HTTP Header
+
+#未完成

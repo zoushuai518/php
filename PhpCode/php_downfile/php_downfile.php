@@ -1,5 +1,7 @@
 <?php 
-
+	#zs
+	#brower down page
+	#Header( "Content-type: application/octet-stream "); 
 
 	/*
 	 * PHP file down
