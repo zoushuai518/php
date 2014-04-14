@@ -3,9 +3,19 @@
 YII 使用 & Debug
 
 
-一、YII CHtml类的使用   -->| zs  20130912
+一、YII 中常用 类|php文件 的分析 & 使用   -->| zs  2014-04-14
+{
+	CHtml
+	YII yiilite.php 文件分析
+
+}
+
 =========================
-二、YII yiilite.php 文件分析 -->| zs  20130912
+二.YII 1.1.* 框架源码分析
+{
+	请看一下文件:
+	SourceCodeAnalysis_README.me
+}
 =========================
 三、YII 抛出一个异常  throw new CException   -->| zs  20130912
 =========================
