@@ -1,6 +1,8 @@
 <?php
 
-class DCApi {
+//from b5m
+
+class HttpCurl{
 
 	const GET = 'GET';
 	const POST = 'POST';
