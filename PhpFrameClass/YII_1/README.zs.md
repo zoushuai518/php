@@ -318,7 +318,7 @@ YII 使用 & Debug
 				'levels' => 'error, warning',
 				),
 			// uncomment the following to show log messages on web pages
-			// YII open mysql sql debug 
+			// YII open mysql sql debug
 			array(
 				'class' => 'CWebLogRoute',
 				),
