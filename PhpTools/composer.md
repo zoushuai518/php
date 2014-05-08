@@ -59,8 +59,8 @@ require 'vendor/autoload.php';
 Composer Use
 
 {
-#zs:
-
+	#zs:
+	可以通过 composer查看是否安装成功;composer --help使用帮助
 
 }
 
@@ -90,13 +90,13 @@ require 关键字
 标准的版本：定义保准的版本包文件，如：1.0.2
 一定范围的版本：使用比较符号来定义有效的版本的范围，有效的符号有>, >=, <, <=, !=
 通配符：特别的匹配符号*，例如1.0.*就相当于>=1.0,<1.1版本的即可
-下一个重要的版本：~符号最好的解释就是，~1.2就相当于>1.2,<2.0，但~1.2.3就相当于>=1.2.3,<1.3版本。   
+下一个重要的版本：~符号最好的解释就是，~1.2就相当于>1.2,<2.0，但~1.2.3就相当于>=1.2.3,<1.3版本。
 
 安装包
 在项目文件路径下运行
 $ composer install
 这样子他会自动下载monolog/monolog文件到你的vendor目录下面。
- 
+
 接下来需要说明一件事情就是
 composer.lock - 锁定文件
 
@@ -120,7 +120,7 @@ require 'vendor/autoload.php';
 这意味着你可以非常非常方便的使用第三方代码了，假设你的项目需要使用monlog，你直接使用吧，他们都已经自动加载了的!
 $log = new Monolog\Logger('name');
 $log->pushHandler(new Monolog\Handler\StreamHandler('app.log', Monolog\Logger::WARNING));
-                                 
+
 $log->addWarning('Foo');
 当然你也可以在composer.json中加载自己的代码：
 {
