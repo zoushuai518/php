@@ -1,0 +1,108 @@
+
+一.YII2 create project:
+{
+
+	#来自yiiframework官方
+	#To install the basic application template, run the command below:
+	#php composer.phar create-project yiisoft/yii2-app-basic basic 2.0.0-beta
+	#To install the advanced application template, run the command below:
+	#php composer.phar create-project yiisoft/yii2-app-advanced advanced 2.0.0-beta
+
+
+	#ZS
+	#要先安装 composer
+	sudo composer create-project yiisoft/yii2-app-basic basic 2.0.0-beta
+	sudo composer create-project yiisoft/yii2-app-advanced advanced 2.0.0-beta
+	未完待需......
+}
+
+
+#============================
+
+
+二.用 Yii2.0开发自己的第一个项目
+
+Yii2.0开发
+{
+	项目初始化完成以后，配置yii2的配置文件，配置文件一般放在app/config目录下，当然这个路径会根据个人习惯而不同
+	zs:我个人推荐的yii2框架目录结构(使用composer 创建项目的默认目录结构和此不同)
+	Yii2.0 开发目录结构:
+	{
+			composer.json       定义项目中的composer依赖包，内容格式可使用composer init生成
+			vendor/             第三方包依赖目录，包括yii2框架
+			web/                nginx/apache配置的webroot目录，提供外部访问
+			app/                 app根目录
+				assets/             assets管理定义
+				commands/           命令行工具（controller）
+				config/             应用程序配置
+				controllers/        web controller目录（控制器）
+				views/              应用views目录（视图）
+				models/             models classs 目录（模型）
+				mail/               e-maill的模板目录
+				runtime/            运行时生成文件目录，要求读写权限
+				tests/              单元测试目录
+			#==
+			1.注意一定要在配置文件里定义 vendorPath的路径
+			2.assets 目录权限 777
+	}
+
+	环境要求
+	{
+
+			PHP 5.4 以上
+			其他要求运行 php requirements.php监测
+	}
+
+
+	nginx虚拟机配置		zs仅供参考
+	{
+
+		server {
+			set $yii_bootstrap "index.php";
+			charset utf-8;
+			client_max_body_size 128M;
+
+			listen 80; ## listen for ipv4
+			#listen [::]:80 default_server ipv6only=on; ## listen for ipv6
+
+				server_name mysite.local;
+			root        /path/to/project/web;
+			index       $yii_bootstrap;
+
+			access_log  /path/to/project/log/access.log  main;
+			error_log   /path/to/project/log/error.log;
+
+			location / {
+				# Redirect everything that isn't real file to yii bootstrap file including arguments.
+				try_files $uri $uri/ /$yii_bootstrap?$args;
+			}
+
+			# uncomment to avoid processing of calls to unexisting static files by yii
+			#location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
+			#    try_files $uri =404;
+			#}
+			#error_page 404 /404.html;
+
+			location ~ \.php$ {
+				include fastcgi.conf;
+				fastcgi_pass   127.0.0.1:9000;
+				#fastcgi_pass unix:/var/run/php5-fpm.sock;
+			}
+
+			location ~ /\.(ht|svn|git) {
+				deny all;
+			}
+		}
+		#==
+		使用此配置时，注意设定php.ini的一个参数值 cgi.fix_pathinfo=0
+
+	}
+
+
+}
+
+
+#============================
+
+
+
