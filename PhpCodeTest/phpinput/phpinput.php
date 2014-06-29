@@ -2,6 +2,9 @@
 
 // 接受php文件,并且以二进制流的形式返回
 
+// zs
+//file_get_contents('php://input', 'r');
+
 // $image_data = file_get_contents('php://input') ? file_get_contents('php://input') : gzuncompress($GLOBALS ['HTTP_RAW_POST_DATA']);
 // $image_data = file_get_contents('php://input') ? file_get_contents('php://input') : $_FILES;
 // header('Content-Type: image/jpg');
