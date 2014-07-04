@@ -8,3 +8,16 @@ download url:
 http://download.chinaunix.net/download/0014000/13247.shtml
 http://pear.php.net/package/PHP_CodeSniffer
 https://github.com/squizlabs/PHP_CodeSniffer
+
+
+
+
+#---
+
+PHP CodeSniffer是一个PHP的代码风格检测器，它根据预先设定好的PHP编码风格和规则，去检查应用中的代码风格情况，内置了ZEND，PEAR的编码风格规则，当然开发者也可以进行自定义。项目的地址在：http://pear.php.net/package/PHP_CodeSniffer/redirected：
+
+
+install:
+sudo pear install PHP_CodeSniffer
+phpcs --standard=Zend c:\phpcode
+其中phpcs –standard后指定了使用Zend的建议代码风格标准进行检查，最后一个参数是要检查的PHP文件所在的目录

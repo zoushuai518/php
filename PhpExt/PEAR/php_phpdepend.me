@@ -1,0 +1,12 @@
+
+PHP Depend
+
+PHP Depend(http://pdepend.org/)是一个PHP中静态代码分析的工具。它可以用来检查你的PHP项目中的代码规模和复杂程度。
+
+install:
+sudo pear channel-discover pear.pdepend.org  
+sudo pear install pdepend/PHP_Depend-beta 
+
+使用的一个例子如下：
+pdepend --jdepend-xml=../jdepend.xml --jdepend-chart=../dependencies.svg --overview-pyramid=../overview-pyramid.svg
+上面会生成一个XML文件，两个SVG的图形文件

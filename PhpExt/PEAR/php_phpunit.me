@@ -1,0 +1,20 @@
+
+首先，PHPUNIT是PHP中的单元测试利器，项目地址在：http://www.phpunit.it。它
+
+能自动运行你编写的单元测试代码，并给出是否通过的结果。安装步骤如下，可以使用PHP中的PEAR安装：
+
+sudo apt-get install php5-curl php-pear php5-dev  
+sudo pear upgrade pear  
+sudo pear channel-discover pear.phpunit.de  
+sudo pear channel-discover components.ez.no  
+sudo pear channel-discover pear.symfony-project.com  
+sudo pear install phpunit/PHPUnit 
+之后，就可以在命令行下，以如下格式执行phpunit：
+
+Phpunit 单元测试的php文件名.php
+
+此外，还可以执行如下命令，生成单元测试的覆盖报告：
+
+phpunit --coverage-html ../CodeCoverage
+
+这将在指定的目录中生成单元测试的覆盖报告，比如这个例子中，将在目录CodeCoverage中生成单元测试覆盖报告

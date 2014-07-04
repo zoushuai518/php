@@ -1,0 +1,11 @@
+
+PHP MESS DECTOR(简称PMD,项目地址http://phpmd.org/)，是基于pdepend的结果进行分析，分析出一旦你的PHP项目超过了pdepend中各具体指标值的规定，从而发出警告提示信息，安装方法如下
+
+install:
+sudo pear channel-discover pear.phpmd.org
+sudo pear channel-discover pear.pdepend.org
+sudo pear install --alldeps phpmd/PHP_PMD
+
+use:
+phpmd . html codesize,unusedcode,naming,design --reportfile ../messdetector.html --exclude Tests/
+上面这个命令含义为，使用pdepend中的4个规则codesize,unusedcode,naming,desgin去检查项目的代码，但除了Tests目录不作检查，检查结果生成HTML的格式，保存在/messdetector.html中
