@@ -1,0 +1,117 @@
+#以下,引入方法,配置文件,测试文件 zs测试可用
+
+1.在 protected/extensions目录下新建 log4php/文件夹，在apache官网下载log4php，解压后，将main/src/php文件夹下的所有文件复制到项目的extensions/log4php文件夹下
+
+2.配置文件 import	log4php文件
+'import' => array(
+	'application.models.*',
+	'application.components.*',
+	'application.common_models.*',
+	'application.common_models.zdm.*',
+	'application.components.widgets.*',
+	//log4php
+	'application.extensions.log4php.*',
+	'application.extensions.log4php.renderers',
+	'application.extensions.log4php.appenders',
+	'application.extensions.log4php.configurators',
+	'application.extensions.log4php.filters',
+	'application.extensions.log4php.helpers',
+	'application.extensions.log4php.layouts',
+),
+
+3.在项目根目录添加 log4php配置文件 log4php.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<log4php:configuration xmlns:log4php="http://logging.apache.org/log4php/" threshold="all">
+
+    <!-- 默认日志appender -->
+    <!--
+    <appender name="default" class="LoggerAppenderRollingFile">
+        <layout class="LoggerLayoutTTCC" />
+        <param name="file" value="/var/www/html/cms/cms-web/protected/runtime/yii.log" />
+        <param name="append" value="true" />
+        <param name="maxFileSize" value="10MB" />
+        <param name="maxBackupIndex" value="10" />
+    </appender>
+    -->
+
+    <!-- 定义一个日志appender开始，每个模块或者每个人一个 -->
+    <!-- <appender name="user1" class="LoggerAppenderRollingFile"> -->   <!-- 修改name -->
+        <!-- <layout class="LoggerLayoutTTCC" > -->
+            <!-- <param name="threadPrinting" value="true" /> -->
+            <!-- <param name="categoryPrefixing" value="true" /> -->
+            <!-- <param name="contextPrinting" value="true" /> -->
+            <!-- <param name="microSecondsPrinting" value="true" /> -->
+            <!-- <param name="dateFormat" value="%Y/%m/%d  %H:%M:%S" /> -->
+        <!-- </layout> -->
+        <!-- <param name="file" value="user1Log.log" /> -->             <!-- 修改日志文件名 -->
+        <!-- <param name="file" value="/var/www/html/cms/cms-web/protected/runtime/user1Logyii.log" /> -->
+        <!-- <param name="append" value="true" /> -->                    <!-- 是否追加方式添加日志 -->
+        <!-- <param name="maxFileSize" value="100MB" /> -->              <!-- 单个日志大小 -->
+        <!-- <param name="maxBackupIndex" value="10" /> -->              <!-- 保留的日志文件个数 -->
+    <!-- </appender> -->
+
+    <!-- 记录所有DEBUG日志的appender -->
+    <appender name="debug_cart" class="LoggerAppenderDailyFile">
+        <layout class="LoggerLayoutPattern" >
+            <param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%logger] [%t] %-5p %l - %message%newline%ex"/>
+        </layout>
+        <param name="file" value="/var/www/html/cms/cms-web/protected/runtime/debug_cart.%s.log" />
+        <param name="threshold" value="debug"/>
+        <param name="append" value="true" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+
+
+
+    <!-- ############ -->
+    <!-- 日志appender结束 -->
+    <!-- 默认的日志句柄  获取root日志句柄  Logger::getRootLogger() 别的日志句柄会继承该句柄-->
+    <!--
+    <root>
+        <level value="info" />
+        <appender_ref ref="default" />
+    </root>
+    -->
+
+    <!-- 定义一个日志句柄   获取独立的日志句柄  Logger::getLogger($name) | ag:Logger::getLogger('user1')-->
+    <!--
+    <logger name="user1log">
+        <level value="info" />
+        <appender_ref ref="user1" />
+    </logger>
+    -->
+
+    <logger name="debug_cart_log">
+        <level value="debug" />
+        <appender_ref ref="debug_cart" />
+    </logger>
+</log4php:configuration>
+
+4.在项目入口文件 增加：
+//包含log4php
+require_once dirname(__FILE__).'/protected/extensions/log4php/Logger.php';
+//读取日志配置文件
+Logger::configure("log4php.xml");
+require_once($yii);
+$config = null;
+Yii::createWebApplication($config)->run();
+
+5.建立测试文件：
+protected/Controller/Log4phpTestController.php
+
+    //log4php日志
+    public function  actionMain(){
+        $filemanagerLog = Logger::getLogger("debug_cart_log");  //获取独立的日志句柄
+        $filemanagerLog->info("写入到debug_cart_log.log的日志");
+        echo 'ok';die;
+
+       /* $filemanagerLog = Logger::getLogger("user1log");//获取日志句柄
+        $filemanagerLog->info("写入到user1Log.log的日志");
+        echo 'ok';die;*/
+        // $filemanagerLog = Logger::getLogger("user2log");//获取日志句柄
+        // $filemanagerLog->info("写入到log4php.log的日志");
+        // $filemanagerLog->info("写入到yiilog4phpdemo.log的日志");
+        // $res = file::model()->findAllBySql("select * from file where parentId=0");
+        // $this->renderPartial("main",array("res"=>$res));
+    }
+
