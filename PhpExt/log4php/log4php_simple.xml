@@ -1,0 +1,10 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+	<appender name="myAppender" class="LoggerAppenderFile">
+		<param name="file" value="/var/www/html/log4php/php-debug-simple.log" />
+	</appender>
+	<root>
+		<!-- <level value="WARN" /> -->
+		<level value="WARN" />
+		<appender_ref ref="myAppender" />
+	</root>
+</configuration>

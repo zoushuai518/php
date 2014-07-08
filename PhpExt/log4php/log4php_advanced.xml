@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://logging.apache.org/log4php/">
+	<!-- 标准控制台输出的appender -->
+	<appender name="STDOUT" class="LoggerAppenderConsole">
+		<!-- <param name="threshold" value="debug"/> -->
+		<param name="threshold" value="debug"/>
+		<layout class="LoggerLayoutPattern" >
+			<param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%t] %-5p %l - %message%newline%ex"/>
+		</layout>
+	</appender>
+
+	<!-- 记录所有DEBUG日志的appender -->
+	<appender name="DEBUG-ALL" class="LoggerAppenderDailyFile">
+		<layout class="LoggerLayoutPattern" >
+			<param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%logger] [%t] %-5p %l - %message%newline%ex"/>
+		</layout>
+		<!-- <param name="file" value="log/php-debug.log.%s" /> -->
+		<param name="file" value="/var/www/html/log4php/php-debug.%s.log" />
+		<param name="threshold" value="debug"/>
+		<param name="append" value="true" />
+		<param name="datePattern" value="Y-m-d" />
+	</appender>
+
+	<!-- 记录所有INFO日志的appender -->
+	<appender name="INFO-ALL" class="LoggerAppenderDailyFile">
+		<layout class="LoggerLayoutPattern" >
+			<param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%t] %-5p %l - %message%newline%ex"/>
+		</layout>
+		<!-- <param name="file" value="log/php-info.log.%s" /> -->
+		<param name="file" value="/var/www/html/log4php/php-info.%s.log" />
+		<param name="threshold" value="info"/>
+		<param name="append" value="true" />
+		<param name="datePattern" value="Y-m-d" />
+	</appender>
+
+	<!-- 记录所有WARN日志的appender -->
+	<appender name="WARN-ALL" class="LoggerAppenderDailyFile">
+		<layout class="LoggerLayoutPattern" >
+			<param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%t] %-5p %l - %message%newline%ex"/>
+		</layout>
+		<!-- <param name="file" value="log/php-warn.log.%s" /> -->
+		<param name="file" value="/var/www/html/log4php/php-warn.%s.log" />
+		<param name="threshold" value="warn"/>
+		<param name="append" value="true" />
+		<param name="datePattern" value="Y-m-d" />
+	</appender>
+
+
+	<!-- 记录所有ERROR日志的appender -->
+	<appender name="ERROR-ALL" class="LoggerAppenderDailyFile">
+		<layout class="LoggerLayoutPattern" >
+			<param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%t] %-5p %l - %message%newline%ex"/>
+		</layout>
+		<!-- <param name="file" value="log/php-error.log.%s" /> -->
+		<param name="file" value="/var/www/html/log4php/php-error.%s.log" />
+		<param name="threshold" value="error"/>
+		<param name="append" value="true" />
+		<param name="datePattern" value="Y-m-d" />
+	</appender>
+
+
+
+	<!-- 定义一个日志句柄   获取独立的日志句柄  Logger::getLogger($name) | ag:Logger::getLogger('DEBUG-ALL') -->
+	<!-- zs注释: Logger::getLogger($name) | $name = <logger name="" ag:DEBUG-ALL-LOG | ext: <appender name="" = <appender_ref ref="" ag:DEBUG-ALL -->
+	<!--
+	<logger name="DEBUG-ALL-LOG">
+		<level value="debug" />
+		<appender_ref ref="DEBUG-ALL" />
+    </logger>
+    <logger name="INFO-ALL-LOG">
+        <level value="info" />
+        <appender_ref ref="INFO-ALL" />
+	</logger>
+	-->
+
+	<!--
+    <logger name="user2log">
+        <level value="info" />
+        <appender_ref ref="default" />
+	</logger>
+	<logger name="Foo">
+		<appender_ref ref="myFileAppender" />
+	</logger>
+	-->
+
+
+	<!-- 获取全局 [root ]日志句柄  Logger::getRootLogger()  -->
+	<root>
+		<!-- <level value="warn"/> -->
+		<level value="debug"/>
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="DEBUG-ALL"/>
+		<appender-ref ref="INFO-ALL"/>
+		<appender-ref ref="WARN-ALL"/>
+		<appender-ref ref="ERROR-ALL"/>
+	</root>
+</configuration>

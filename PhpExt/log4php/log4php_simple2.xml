@@ -1,0 +1,22 @@
+<configuration xmlns="http://logging.apache.org/log4php/">
+
+	<appender name="myConsoleAppender" class="LoggerAppenderConsole" />
+
+	<appender name="myFileAppender" class="LoggerAppenderFile">
+		<layout class="LoggerLayoutPattern">
+			<!-- <param name="conversionPattern" value="%date [%logger] %message%newline" /> -->
+			<!-- <param name="ConversionPattern" value="[%date{Y-m-d H:i:s}] [%logger] %message%newline"/> -->
+			<param name="ConversionPattern" value="[%date{Y-m-d H:i:s}] [%logger] %message%newline"/>
+		</layout>
+		<param name="file" value="/var/www/html/log4php/php-debug-simple2.log" />
+	</appender>
+
+	<logger name="Foo">
+		<appender_ref ref="myFileAppender" />
+	</logger>
+
+	<root>
+		<level value="DEBUG" />
+		<appender_ref ref="myConsoleAppender" />
+	</root>
+</configuration>

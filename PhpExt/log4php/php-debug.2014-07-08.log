@@ -1,0 +1,4 @@
+[2014-07-08 11:26:04,163] [php-debug] [3170] DEBUG main.main(/var/www/html/log4php/log4php_advanced.php:15) - 测试LOG4PHP debug
+[2014-07-08 11:35:53,272] [php-debug] [3170] DEBUG main.main(/var/www/html/log4php/log4php_advanced.php:15) - 测试LOG4PHP debug
+[2014-07-08 12:18:20,963] [php-debug] [3171] DEBUG main.main(/var/www/html/log4php/log4php_advanced.php:15) - 测试LOG4PHP debug
+[2014-07-08 12:18:27,032] [php-debug] [11844] DEBUG main.main(/var/www/html/log4php/log4php_advanced.php:15) - 测试LOG4PHP debug
