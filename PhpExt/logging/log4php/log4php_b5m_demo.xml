@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4php:configuration xmlns:log4php="http://logging.apache.org/log4php/" threshold="all">
+
+    <!-- 默认日志appender -->
+    <!--
+    <appender name="default" class="LoggerAppenderRollingFile">
+        <layout class="LoggerLayoutTTCC" />
+        <param name="file" value="/var/www/html/cms/cms-web/protected/runtime/yii.log" />
+        <param name="append" value="true" />
+        <param name="maxFileSize" value="10MB" />
+        <param name="maxBackupIndex" value="10" />
+    </appender>
+    -->
+
+    <!-- 定义一个日志appender开始，每个模块或者每个人一个 -->
+    <!-- <appender name="user1" class="LoggerAppenderRollingFile"> -->   <!-- 修改name -->
+        <!-- <layout class="LoggerLayoutTTCC" > -->
+            <!-- <param name="threadPrinting" value="true" /> -->
+            <!-- <param name="categoryPrefixing" value="true" /> -->
+            <!-- <param name="contextPrinting" value="true" /> -->
+            <!-- <param name="microSecondsPrinting" value="true" /> -->
+            <!-- <param name="dateFormat" value="%Y/%m/%d  %H:%M:%S" /> -->
+        <!-- </layout> -->
+        <!-- <param name="file" value="user1Log.log" /> -->             <!-- 修改日志文件名 -->
+        <!-- <param name="file" value="/var/www/html/cms/cms-web/protected/runtime/user1Logyii.log" /> -->
+        <!-- <param name="append" value="true" /> -->                    <!-- 是否追加方式添加日志 -->
+        <!-- <param name="maxFileSize" value="100MB" /> -->              <!-- 单个日志大小 -->
+        <!-- <param name="maxBackupIndex" value="10" /> -->              <!-- 保留的日志文件个数 -->
+    <!-- </appender> -->
+
+    <!-- 记录所有DEBUG日志的appender -->
+    <appender name="debug_cart" class="LoggerAppenderDailyFile">
+        <layout class="LoggerLayoutPattern" >
+            <param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%logger] [%t] %-5p %l - %message%newline%ex"/>
+        </layout>
+        <param name="file" value="./debug_cart.%s.log" />
+        <param name="threshold" value="info"/>
+        <param name="append" value="true" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+
+
+
+    <!-- ############ -->
+    <!-- 日志appender结束 -->
+    <!-- 默认的日志句柄  获取root日志句柄  Logger::getRootLogger() 别的日志句柄会继承该句柄-->
+    <!--
+    <root>
+        <level value="info" />
+        <appender_ref ref="default" />
+    </root>
+    -->
+
+    <!-- 定义一个日志句柄   获取独立的日志句柄  Logger::getLogger($name) | ag:Logger::getLogger('user1')-->
+    <!--
+    <logger name="user1log">
+        <level value="info" />
+        <appender_ref ref="user1" />
+    </logger>
+    -->
+
+    <logger name="post_order_params">
+        <level value="info" />
+        <appender_ref ref="debug_cart" />
+    </logger>
+    <logger name="pro_data">
+        <level value="info" />
+        <appender_ref ref="debug_cart" />
+    </logger>
+    <logger name="order_data">
+        <level value="info" />
+        <appender_ref ref="debug_cart" />
+    </logger>
+    <logger name="order_return_status">
+        <level value="info" />
+        <appender_ref ref="debug_cart" />
+    </logger>
+    <logger name="return_order_status_time">
+        <level value="info" />
+        <appender_ref ref="debug_cart" />
+    </logger>
+</log4php:configuration>
