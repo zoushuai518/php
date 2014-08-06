@@ -1,0 +1,1 @@
+Alternative PHP Cache (APC缓存)是一种对PHP有效的开放源高速缓冲储存器工具，他能够缓存Opcode(目标文件)的PHP中间码 。 APC的缓存分两部分:系统缓存和用户数据缓存. 系统缓存 是自动使用的,是指APC把PHP文件源码的编译结果缓存起来,然后在再次调用时先对比时间标记 。如果未过期,则使用缓存代码运行 。默认缓存 3600s(一小时).但是这样仍会浪费大量CPU时间.因此可以在php.ini中设置system缓存为永不过期(apc.ttl=0).不过如果这样设置,改运PHP代码后需要restart一下您的web服务器(比如apache…).目前对APC的性能测试一般指的是这一层cache;从文字上理到：Alternative PHP Cache(APC缓存)也算是一种内存缓存扩展，算是数据库缓存扩展 。
