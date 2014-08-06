@@ -20,4 +20,8 @@ $log ->info('post_order_params');
 
 $log = Logger::getLogger('order_data');
 $log ->info('order_data');
+
+
+$log = Logger::getLogger('order_info');
+$log ->info('order_info');
 ?>

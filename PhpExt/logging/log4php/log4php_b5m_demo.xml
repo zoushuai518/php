@@ -29,11 +29,23 @@
     <!-- </appender> -->
 
     <!-- 记录所有DEBUG日志的appender -->
+
+    <!-- 记录cart 日志的appender -->
     <appender name="debug_cart" class="LoggerAppenderDailyFile">
         <layout class="LoggerLayoutPattern" >
             <param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%logger] [%t] %-5p %l - %message%newline%ex"/>
         </layout>
-        <param name="file" value="./debug_cart.%s.log" />
+        <param name="file" value="./protected/runtime/debug_cart.%s.log" />
+        <param name="threshold" value="info"/>
+        <param name="append" value="true" />
+        <param name="datePattern" value="Y-m-d" />
+    </appender>
+    <!-- 记录cart order日志的appender -->
+    <appender name="debug_cart_order" class="LoggerAppenderDailyFile">
+        <layout class="LoggerLayoutPattern" >
+            <param name="ConversionPattern" value="[%date{Y-m-d H:i:s,u}] [%logger] [%t] %-5p %l - %message%newline%ex"/>
+        </layout>
+        <param name="file" value="./protected/runtime/debug_cart_order.%s.log" />
         <param name="threshold" value="info"/>
         <param name="append" value="true" />
         <param name="datePattern" value="Y-m-d" />
@@ -59,11 +71,16 @@
     </logger>
     -->
 
+    <!-- 记录cart 日志的appender -->
     <logger name="post_order_params">
         <level value="info" />
         <appender_ref ref="debug_cart" />
     </logger>
     <logger name="pro_data">
+        <level value="info" />
+        <appender_ref ref="debug_cart" />
+    </logger>
+    <logger name="pro_data_status">
         <level value="info" />
         <appender_ref ref="debug_cart" />
     </logger>
@@ -78,5 +95,11 @@
     <logger name="return_order_status_time">
         <level value="info" />
         <appender_ref ref="debug_cart" />
+    </logger>
+
+    <!-- 记录cart order日志的appender -->
+    <logger name="order_info">
+        <level value="info" />
+        <appender_ref ref="debug_cart_order" />
     </logger>
 </log4php:configuration>
