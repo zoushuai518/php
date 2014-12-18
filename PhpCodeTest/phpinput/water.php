@@ -102,11 +102,11 @@ class WaterMark
                 $url = self::ip."image/watermark/{$type}.htm?";
                 break;
         }
-        $url = 'http://phpinput.php.com/phpinput.php';  //本机测试 url
+        $url = 'http://phpcode.weimob.com/phpinput/phpinput.php';  //本机测试 url
         if($type=='watermark'){
             $img = array('name'=>$name,'file'=>'@'.$pics);  //二进制格式上传文件；注意 @
             $data = self::httpRequest($url,self::POST,$img);
-            $status = file_put_contents('C:\Users\lscm\Desktop\zs_stream1.jpg',$data);  //把二进制流写成图片
+            $status = file_put_contents('/tmp/phpinput/',$data);  //把二进制流写成图片
             // $data = self::httpRequest($url,self::POST,$name.'=@'.$pics);
         }else{
             $data = self::httpRequest($url,self::POST,$name.'='.$pics);
