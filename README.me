@@ -1,21 +1,17 @@
 php
 =======
-PHP-FIG
-http://www.php-fig.org/
-=======
 
 phar
 {
+    http://php.net/manual/zh/book.phar.php
     .phar -> PHAR是PHP的一种文档格式，可以在命令行运行
-}
-
-{
-    phpinfo:
 }
 
 pear
 {
-    pear -> 全程为PHP扩展与应用库，它是一个PHP扩展及应用的一个代码仓库
+    pear: 全程为PHP扩展与应用库，它是一个PHP扩展及应用的一个代码仓库
+
+    http://pear.php.net
 
     {
         支持的协议和封装的协议：
@@ -29,7 +25,17 @@ pear
 
 pecl
 {
+    http://pecl.php.net/
+    http://php.net/manual/zh/install.pecl.php
 
+    PECL 的全称是 The PHP Extension Community Library ，是一个开放的并通过PEAR(PHP Extension and Application Repository，PHP 扩展和应用仓库)打包格式来打包安装的PHP扩展库仓库
+}
+
+pear,pecl区别
+{
+    1. pear一种是用纯粹的PHP代码写函数和类, pecl一种是用c或者c++编写外部模块加载至php中
+    2. PEAR是PHP扩展与应用库（the PHP Extension and Application Repository）的缩写。它是一个PHP扩展及应用的一个代码仓库，简单地说，PEAR就是PHP的CPAN。
+    3. PECL （PHP Extension Community Library），PHP的扩展库，它提供了一系列已知的扩展库，由C++等其他语言编写而成，多数以Dll（动态链接库）的形式体现，为比PEAR更快，但是与PEAR不同的是，PECL需要在服务器上配置并被注册到主机中。
 }
 
 =======
